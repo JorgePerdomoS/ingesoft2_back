@@ -21,12 +21,11 @@ public class UserServiceImpl implements UserService {
         UserDocument userDocument = userRepository.
                 findByUsernameAndEmail(user.getUsername(), user.getEmail()).orElse(null);
 
-        if (userDocument != null) {
-            return String.format("User with username %s and email %s already exists", user.getUsername(), user.getEmail());
+        if (userDocument == null) {
+            userDocument = mapper.map(user, UserDocument.class);
+            userRepository.save(userDocument);
+            return String.format("Usuario con id %s creado correctamente", userDocument.getId());
         }
-
-        userDocument = mapper.map(user, UserDocument.class);
-
-        return String.format("Usuario con id %s creado correctamente", userDocument.getId());
+        return null;
     }
 }
