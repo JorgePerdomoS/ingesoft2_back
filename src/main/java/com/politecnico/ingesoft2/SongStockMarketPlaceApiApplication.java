@@ -1,8 +1,6 @@
 package com.politecnico.ingesoft2;
 
-import com.github.dozermapper.core.DozerBeanMapper;
-import com.github.dozermapper.core.Mapper;
-import com.github.dozermapper.core.inject.DozerBeanContainer;
+import org.dozer.DozerBeanMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,4 +12,8 @@ public class SongStockMarketPlaceApiApplication {
 		SpringApplication.run(SongStockMarketPlaceApiApplication.class, args);
 	}
 
+	@Bean
+	public DozerBeanMapper mapper() {
+		return new DozerBeanMapper();
+	}
 }
